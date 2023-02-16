@@ -1,42 +1,28 @@
 const Sequelize = require('sequelize')
 const connection = require('./database')
 
-const Produto = connection.define('produtos', {
+const Mensagem = connection.define('mensagens', {
     nome: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    imagem: {
+    email: {
         type: Sequelize.STRING,
         allowNull: false
 
     },
-    tipo: {
+    motivo: {
         type: Sequelize.STRING,
         allowNull: false
-
     },
-    destaque: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
-
-    },
-    genero: {
-        type: Sequelize.STRING,
-        allowNull: false
-
-    },
-    preco: {
-        type: Sequelize.REAL,
-        allowNull: false
-
-    },
-    descricao: {
+    mensagem: {
         type: Sequelize.TEXT,
         allowNull: false
-
+    },
+    promocoes: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
     }
 })
 
-
-module.exports = Produto
+module.exports = Mensagem

@@ -5,8 +5,10 @@ const bodyParser = require('body-parser')
 const connection = require('./database/database')
 const Produto = require('./database/Produtos')
 const Comentario = require('./database/Comentarios')
+const Mensagem = require('./database/Mensagens')
 const produtosController = require('./controllers/ProdutosController')
 const comentariosController = require('./controllers/ComentariosController')
+const mensagensController = require('./controllers/MensagensController')
 
 
 
@@ -19,6 +21,7 @@ app.use(cors({
 
   app.use("/", produtosController)
   app.use("/", comentariosController)
+  app.use("/", mensagensController)
 
 
 // Database

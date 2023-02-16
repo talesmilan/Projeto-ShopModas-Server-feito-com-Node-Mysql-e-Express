@@ -1,7 +1,5 @@
 const Sequelize = require('sequelize')
-
 const connection = require('./database')
-
 const Produto = require('./Produtos')
 
 const Comentario = connection.define('comentarios', {
