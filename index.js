@@ -11,10 +11,7 @@ const produtosController = require('./controllers/ProdutosController')
 const comentariosController = require('./controllers/ComentariosController')
 const mensagensController = require('./controllers/MensagensController')
 const usersController = require('./controllers/UsersController')
-const session = require('express-session')
 const path = require('path')
-
-
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -28,19 +25,12 @@ app.use("/", comentariosController)
 app.use("/", mensagensController)
 app.use("/", usersController)
 
-app.use(session({
-    secret: "jfkdkdkdjfla",
-    cookie: {maxAge: 1000 * 60 * 60 * 24}
-}))
-
-
 // Database
 connection.authenticate()
     .then(() => {
     console.log("Conexão feita com sucesso!")
     })
     .catch((e) => console.log(e))
-
 
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
