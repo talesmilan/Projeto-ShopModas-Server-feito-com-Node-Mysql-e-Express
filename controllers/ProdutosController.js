@@ -114,4 +114,30 @@ router.get("/produto/:id", (req, res) => {
     }
 })
 
+router.get("/buscar/:produtos/:page", (req, res) => {
+    var produtos = req.params.produtos
+    var page = req.params.page
+    var offset = 0
+    if (isNaN(page) || page == 1) {
+        offset = 0
+    } else {
+        offset = (parseInt(page) - 1) * 9
+    }
+    Produto.findAndCountAll({
+        where: {
+            nome: {[Op.substring]: produtos}
+        },
+        limit: 9,
+        offset: offset
+    }).then((produtos) => {
+        res.status(200)
+        res.json(produtos)
+    }).catch(() => {
+        res.status(404)
+        res.json({erro: "Erro interno."})
+    })
+
+})
+
+
 module.exports = router
