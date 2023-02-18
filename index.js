@@ -12,7 +12,6 @@ const comentariosController = require('./controllers/ComentariosController')
 const mensagensController = require('./controllers/MensagensController')
 const usersController = require('./controllers/UsersController')
 const pedidosController = require('./controllers/PedidosController')
-const path = require('path')
 const Pedidos = require('./database/Pedidos')
 const Item = require('./database/ItensPedidos')
 
