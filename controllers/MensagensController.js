@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Mensagem = require('../database/Mensagens')
 
-
 router.post("/mensagens", (req, res) => {
     var {nome, email, motivo, mensagem, promocoes } = req.body
     if (nome == "" || email == "" || motivo == "" || mensagem == "") {
@@ -22,6 +21,5 @@ router.post("/mensagens", (req, res) => {
         })
     }
 })
-
 
 module.exports = router

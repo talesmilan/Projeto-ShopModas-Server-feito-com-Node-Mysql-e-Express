@@ -11,7 +11,10 @@ const produtosController = require('./controllers/ProdutosController')
 const comentariosController = require('./controllers/ComentariosController')
 const mensagensController = require('./controllers/MensagensController')
 const usersController = require('./controllers/UsersController')
+const pedidosController = require('./controllers/PedidosController')
 const path = require('path')
+const Pedidos = require('./database/Pedidos')
+const Item = require('./database/ItensPedidos')
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -24,6 +27,7 @@ app.use("/", produtosController)
 app.use("/", comentariosController)
 app.use("/", mensagensController)
 app.use("/", usersController)
+app.use("/", pedidosController)
 
 // Database
 connection.authenticate()

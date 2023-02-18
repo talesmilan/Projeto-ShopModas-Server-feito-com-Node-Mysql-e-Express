@@ -85,26 +85,20 @@ router.post("/login", (req, res) => {
 
 router.post("/autorizacao", (req, res) => {
     var {token} = req.body
-    console.log(1+"----------------------------------------")
     if (token == "") {
         res.status(400)
-        console.log(2)
         res.json({erro: "Token inválido."})
     } else {
-        console.log(3)
         jwt.verify(token, segredo, (erro, dados) => {
             if(erro) {
                 res.status(401)
-                console.log(4)
                 res.json({erro: "Token inválido."})
             } else {
                 res.status(200)
-                console.log(5)
                 res.json(token)
             }                
         })
     }
 })
-
 
 module.exports = router

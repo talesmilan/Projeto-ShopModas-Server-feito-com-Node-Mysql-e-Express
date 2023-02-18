@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Comentario = require('../database/Comentarios')
 
-
 router.get("/comentarios", (req, res) => {
     Comentario.findAll().then((comentarios) => {
         res.statusCode = 200
@@ -74,6 +73,5 @@ router.put("/comentario/:id", (req, res) => {
           })
     } 
 })
-
 
 module.exports = router
