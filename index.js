@@ -6,11 +6,15 @@ const connection = require('./database/database')
 const Produto = require('./database/Produtos')
 const Comentario = require('./database/Comentarios')
 const Mensagem = require('./database/Mensagens')
+const User = require('./database/Users')
 const produtosController = require('./controllers/ProdutosController')
 const comentariosController = require('./controllers/ComentariosController')
 const mensagensController = require('./controllers/MensagensController')
-
-
+const usersController = require('./controllers/UsersController')
+const pedidosController = require('./controllers/PedidosController')
+const path = require('path')
+const Pedidos = require('./database/Pedidos')
+const Item = require('./database/ItensPedidos')
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -19,10 +23,11 @@ app.use(cors({
     origin: 'http://localhost:3000' 
   }));
 
-  app.use("/", produtosController)
-  app.use("/", comentariosController)
-  app.use("/", mensagensController)
-
+app.use("/", produtosController)  
+app.use("/", comentariosController)
+app.use("/", mensagensController)
+app.use("/", usersController)
+app.use("/", pedidosController)
 
 // Database
 connection.authenticate()
