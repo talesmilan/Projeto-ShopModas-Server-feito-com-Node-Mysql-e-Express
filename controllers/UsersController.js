@@ -53,7 +53,7 @@ router.post("/cadastro", (req, res) => {
 })
 
 router.post("/login", (req, res) => {
-    var {usuario, senha, lembrar} = req.body
+    var {usuario, senha} = req.body
     if (usuario == "" || senha == "") {
         res.status(400)
         res.json({erro: "Você deve preencher a senha e o usuário."})
