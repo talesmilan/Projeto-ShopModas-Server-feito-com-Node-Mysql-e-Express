@@ -7,11 +7,14 @@ const segredo = require('../JWTsecret')
 
 
 router.post("/pedidos", (req, res) => {
-    var {token, carrinho, precoTotal, quantidade} = req.body
-    if (token == "") {
+    var {carrinho, precoTotal, quantidade} = req.body
+    const authToken = req.headers["authorization"]
+    if (authToken === undefined) {
         res.status(400)
         res.json({erro: "Token inválido."})
     }
+    const bearer = authToken.split(" ")
+    var token = bearer[1]
     if (carrinho.length == 0 || quantidade == 0) {
         res.status(400)
         res.json({erro: "Não foi inviado pedidos."})

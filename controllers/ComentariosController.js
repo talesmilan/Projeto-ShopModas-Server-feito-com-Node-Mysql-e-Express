@@ -11,6 +11,21 @@ router.get("/comentarios", (req, res) => {
     })
 })
 
+router.get("/comentarios/:produtoId", (req, res) => {
+    if(isNaN(req.params.produtoId)) {
+        res.sendStatus(400)
+    } else {
+        var produtoId = req.params.produtoId
+        Comentario.findAll({where: {produtoId: produtoId}}).then(comentarios => {
+            res.status(200)
+            res.json(comentarios)
+        }).catch(e => {
+            res.sendStatus(404)
+        })
+    }
+})
+
+
 router.post("/comentarios", (req, res) => {
     var { autor, nota, produtoId, comentario } = req.body
     if (autor === "" || nota === "" || produtoId === "" || comentario === "") {
@@ -31,7 +46,7 @@ router.post("/comentarios", (req, res) => {
     }
 })
 
-router.delete("/comentario:id", (req, res) => {
+router.delete("/comentario/:id", (req, res) => {
     if(isNaN(req.params.id)) {
         res.sendStatus(400)
     } else {
