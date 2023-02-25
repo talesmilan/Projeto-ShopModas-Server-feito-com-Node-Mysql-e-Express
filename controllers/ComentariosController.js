@@ -29,9 +29,9 @@ router.get("/comentarios/:produtoId", (req, res) => {
 router.post("/comentarios", (req, res) => {
     var { autor, nota, produtoId, comentario } = req.body
     if (autor === "" || nota === "" || produtoId === "" || comentario === "") {
-        res.sendStatus(400)        
+        res.status(400)
+        res.json({erro: "Você deve preencher todos os campos."})        
     } else {
-        console.log(req.body)
         Comentario.create({
             autor: autor,
             nota: parseInt(nota),
@@ -41,7 +41,8 @@ router.post("/comentarios", (req, res) => {
             res.statusCode = 200
             res.json(produto)
         }).catch(e => {
-            res.sendStatus(404)
+            res.status(404)
+            res.json({erro: "Não foi possível postar seu comentário devido a um erro interno."})
         })
     }
 })
